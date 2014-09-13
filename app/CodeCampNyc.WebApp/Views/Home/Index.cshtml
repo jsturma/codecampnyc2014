@@ -1,0 +1,45 @@
+﻿@model CodeCampNyc.WebApp.Models.SearchViewModel
+
+<div class="jumbotron">
+    <input type="text" id="search-text-box" />
+</div>
+
+<div id="session-list" class="row">
+</div>
+
+<style type="text/css">
+    #search-text-box
+    {
+        width: 1020px;
+    }
+    .session-level
+    {
+        font-size: 24px;
+        color: gray;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        search("");
+        $('#search-text-box').keypress(function (e) {
+            if (e.which == 13) {
+                search($(this).val());
+            }
+        });
+    });
+
+    function search(text) {
+        $.ajax({
+            url: '@Url.Action("Search", "Home")' + '/?text=' + text,
+            type: 'POST',
+            dataType: 'text',
+            success: function (data) {
+                $('#session-list').html(data);
+            },
+            error: function () {
+                alert("Something went wrong...");
+            }
+        });
+    }
+</script>

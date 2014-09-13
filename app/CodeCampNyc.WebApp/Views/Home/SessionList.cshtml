@@ -1,0 +1,31 @@
+﻿@model CodeCampNyc.WebApp.Models.SearchViewModel
+
+<div class="result-count"><span id="total">@Model.TotalHits</span> results</div>
+
+@foreach (var session in Model.Sessions)
+{
+    <div>
+        <span class="title">@session.Source.Title<span class="score">     (@session.Score)</span></span>
+        <p class="session-level">@session.Source.Level</p>
+        <p>@session.Source.Abstract</p>
+    </div>
+}
+
+<style>
+    .result-count
+    {
+        font-size: 24px;
+        color: blue;
+        padding-bottom: 10px;
+
+    }
+    .score
+    {
+        font-size: 24px;
+        color: darkseagreen;
+    }
+    .title
+    {
+        font-size: 28px;
+    }
+</style>
